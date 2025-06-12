@@ -16,7 +16,7 @@ pip3 install requests
 
 ### Main commands
 
-- Download: packages filters by architecture, download size. URL with repos names must be provided. Subsequent downloading can used config file for URL and repos names.
+- Download: packages filters by architecture, download size. URL with repos names must be provided. Subsequent downloading can use config file for URL and repos names. After downloading meta cache must be refreshed: `obs_repos -r <REPO_PATH> d --keep-conf -D`.
 - Filter: packages filters by relations, provides, files, summary. Output formats: packages, all files table, packages relation tree.
 
 ### Get help
