@@ -14,6 +14,11 @@ pip3 install requests
 - Repository Mirroring. Download and share repos. Be free to archive repos with partial mirroring using packages filters while downloading.
 - Repository Analysing. Download with packages filters and explore packages relations, get files table, statistical info.
 
+### Main commands
+
+- Download: packages filters by architecture, download size. URL with repos names must be provided. Subsequent downloading can used config file for URL and repos names.
+- Filter: packages filters by relations, provides, files, summary. Output formats: packages, all files table, packages relation tree.
+
 ### Get help
 ```
 ./obs_repos -h
@@ -96,4 +101,50 @@ obs_repos pr --path ./repos_cache_15.6/apps/repodata/primary.xml.gz
 
   Show packages from filelists .xml.gz file (repository low level API):
 obs_repos fl --path ./repos_cache_15.6/apps/repodata/filelists.xml.gz
+```
+
+**Download** subcommand help:
+```
+./obs_repos d -h
+usage: obs_repos download [-h] [-u URL] [-e NAMES] [-s NUM] [-S NUM] [--keep-meta] [--keep-conf] [--keep-cache] [-R] [-D]
+
+options:
+  -h, --help            show this help message and exit
+  -u URL, --url URL     URL template to download repositories; example: https://example.org/{repo}:/
+  -e NAMES, --repos NAMES
+                        repositories names; example: "system games"
+  -s NUM, --size-max NUM
+                        package filter by download size, bytes; example: 1_000_000
+  -S NUM, --size-min NUM
+                        package filter by download size, bytes; example: 2_097_152
+  --keep-meta           do not update meta files but download missing meta files for new repositories
+  --keep-conf           do not update config ".conf.toml" file
+  --keep-cache          do not update meta cache ".packages.bin" file
+  -R, --redownload      download packages but keep existing valid files; combines following options: --keep-meta, --keep-conf, --keep-cache
+  -D, --dummy           do not download: nor meta, nor packages
+```
+
+**Filter** subcommand help:
+```
+./obs_repos f -h
+usage: obs_repos filter [-h] [--provides NAME] [--requires NAME] [--files NAME] [--summary TEXT] [-C] [-N] [-A] [-F] [-V] [-D] [-R] [-L] [-M] [-Z] [--out {text,files,files-full,provides,provides-full,tree,tree-full,rtree,rtree-full}]
+
+options:
+  -h, --help            show this help message and exit
+  --provides NAME       package filter by provides, space separated values; examples: "libtimed", "libc.so.6(GLIBC_2.34) libtimed"
+  --requires NAME       package filter by requires; example: libtimed
+  --files NAME          package filter by files, space separated values; ^ starts with; examples: "libtimed", "libc.so.6 libtimed", "^/bin/"
+  --summary TEXT        package filter by summary and description; examples: "MDM", case insensitive: "~mdm"
+  -C                    hide packets counter
+  -N                    hide repository name
+  -A                    show packets architecture info
+  -F                    show packets file info
+  -V                    show packets version info
+  -D                    show packets summary and description info
+  -R                    show packets relations info
+  -L                    show packets files info
+  -M                    show packets files filtered by --files option
+  -Z                    show packets size
+  --out {text,files,files-full,provides,provides-full,tree,tree-full,rtree,rtree-full}
+                        output format: files/files-full/provides/provides-full - sorted table; tree/rtree - packet-based /reverse; tree-full/rtree-full - relation-based /reverse; default: text
 ```
