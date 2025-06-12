@@ -16,8 +16,20 @@ pip3 install requests
 
 ### Main commands
 
-- Download: packages filters by architecture, download size. URL with repos names must be provided. Subsequent downloading can use config file for URL and repos names. After downloading meta cache must be refreshed: `obs_repos -r <REPO_PATH> d --keep-conf -D`.
+- Download: packages filters by architecture, download size. URL with repos names must be provided. Subsequent downloading can use config file for URL and repos names. After downloading meta cache must be refreshed.
+  ```
+  # download repositories
+  obs_repos -r <REPO_PATH> -a "armv7hl noarch" d -u 'https://example.org/{repo}:/15.6/' -e "apps system games" -s 1_000_000
+  # refresh meta cache
+  obs_repos -r <REPO_PATH> d --keep-conf -D
+  ```
 - Filter: packages filters by relations, provides, files, summary. Output formats: packages, all files table, packages relation tree.
+  ```
+  # openSUSE NetworkManager package relations
+  obs_repos -r <REPO_PATH> -p "NetworkManager" -d f -AVR
+  # Sailfish OS timed-qt5 package reverse tree
+  obs_repos -r <REPO_PATH> -p "=timed-qt5" -a "armv7hl noarch" -d f --out rtree-full
+  ```
 
 ### Get help
 ```
