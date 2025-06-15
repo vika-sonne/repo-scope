@@ -14,8 +14,10 @@ pip3 install requests
 
 ### Usage scenario
 
-- Repository Mirroring. Download and share repos. Be free to archive repos with partial mirroring using packages filters while downloading.
-- Repository Analysing. Download with packages filters and explore packages relations, get files table, statistical info.
+- Repository Mirroring.\
+  Download and share repos. Be free to archive repos with partial mirroring using packages filters while downloading.
+- Repository Analysing.\
+  Download with packages filters and explore packages relations, get files table, statistical info.
 
 ### Main commands
 
