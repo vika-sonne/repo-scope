@@ -1,5 +1,6 @@
 # repo-scope
-**:snake: Pure Python repository command-line tool. Download/mirror and analyse .rpm based repositories.**
+**:snake: Pure Python repository command-line tool.\
+Download/mirror and analyse .rpm based repositories.**
 ---
 :telescope: tele-scope the remote repository\
 :microscope: micro-scope the local repository
