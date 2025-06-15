@@ -19,14 +19,31 @@ pip3 install requests
 
 ### Main commands
 
-- Download: packages filters by architecture, download size. URL with repos names must be provided. Subsequent downloading can use config file for URL and repos names. After downloading meta cache must be refreshed.
+- Download: packages filters by architecture, download size.\
+  URL with repos names must be provided. Subsequent downloading can use config file for URL and repos names.\
+  After downloading meta cache must be refreshed.
+
+  Case 1. Download repositories with known architectures (armv7hl noarch):
   ```
-  # download repositories
+  # download repositories meta info and packages with selected architectures
   obs_repos -r <REPO_PATH> -a "armv7hl noarch" d -u 'https://example.org/{repo}:/15.6/' -e "apps system games" -s 1_000_000
   # refresh meta cache
   obs_repos -r <REPO_PATH> d --keep-conf -D
   ```
-- Filter: packages filters by relations, provides, files, summary. Output formats: packages, all files table, packages relation tree.
+
+  Case 2. Download repositories meta info, get list of architectures and download packages:
+  ```
+  # download repositories meta info
+  obs_repos -r <REPO_PATH> d -u 'https://example.org/{repo}:/15.6/' -e "apps system games" -s 1_000_000
+  # refresh meta cache
+  obs_repos -r <REPO_PATH> d --keep-conf -D
+  # get list of architectures
+  obs_repos -r <REPO_PATH> a
+  # download packages with selected architectures
+  obs_repos -r <REPO_PATH> -a "armv7hl noarch" d -s 1_000_000
+  ```
+- Filter: packages filters by relations, provides, files, summary.\
+  Output formats: packages, all files table, all relations table, packages relation tree.
   ```
   # show openSUSE NetworkManager package relations
   obs_repos -r <REPO_PATH> -p "NetworkManager" -d f -AVR
