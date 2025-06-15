@@ -1,6 +1,8 @@
-# repo-master
+# repo-scope
 **:snake: Pure Python repository command-line tool. Download/mirror and analyse .rpm based repositories.**
-_____________________________________________________
+---
+:telescope: tele-scope the remote repository\
+:microscope: micro-scope the local repository
 
 ## Install
 ```
@@ -25,9 +27,9 @@ pip3 install requests
   ```
 - Filter: packages filters by relations, provides, files, summary. Output formats: packages, all files table, packages relation tree.
   ```
-  # openSUSE NetworkManager package relations
+  # show openSUSE NetworkManager package relations
   obs_repos -r <REPO_PATH> -p "NetworkManager" -d f -AVR
-  # Sailfish OS timed-qt5 package reverse tree
+  # show Sailfish OS timed-qt5 package reverse relaions tree
   obs_repos -r <REPO_PATH> -p "=timed-qt5" -a "armv7hl noarch" -d f --out rtree-full
   ```
 
